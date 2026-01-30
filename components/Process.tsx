@@ -138,40 +138,40 @@ export default function Process() {
             <p className="uppercase font-medium text">i think a lot about the process</p>
           </div>
         </div>
-      </div>
 
-      {/* Card Wrapper */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-24 lg:mt-28 process-cards-container">
-        {processItems.map((item, index) => (
-          <div key={item.id} className="border p-6 process-card">
-            <div
-              ref={(el) => {
-                iconRefs.current[index] = el;
-              }}
-              className="text-[200px] outlined-text uppercase leading-tight relative max-w-max mx-auto group icon-wrapper"
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              <span>{item.icon}</span>
-              <span className="absolute -top-2 -left-2 group-hover:top-0 group-hover:left-0 transition-all duration-400">
-                {item.icon}
-              </span>
-              <span className="absolute -top-4 -left-4 group-hover:top-0 group-hover:left-0 transition-all duration-400">
-                {item.icon}
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-start gap-1.5">
-                <p className="text-neutral-500">{item.id}/</p>
-                <h3 className="card-title">{item.title}</h3>
+        {/* Card Wrapper Moved inside container */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-24 lg:mt-28 process-cards-container">
+          {processItems.map((item, index) => (
+            <div key={item.id} className="border p-6 process-card">
+              <div
+                ref={(el) => {
+                  iconRefs.current[index] = el;
+                }}
+                className="text-[200px] outlined-text uppercase leading-tight relative max-w-max mx-auto group icon-wrapper"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <span>{item.icon}</span>
+                <span className="absolute -top-2 -left-2 group-hover:top-0 group-hover:left-0 transition-all duration-400">
+                  {item.icon}
+                </span>
+                <span className="absolute -top-4 -left-4 group-hover:top-0 group-hover:left-0 transition-all duration-400">
+                  {item.icon}
+                </span>
               </div>
 
-              <p className="process-description">
-                {item.text}
-              </p>
+              <div className="space-y-2">
+                <div className="flex items-start gap-1.5">
+                  <p className="text-neutral-500">{item.id}/</p>
+                  <h3 className="card-title">{item.title}</h3>
+                </div>
+
+                <p className="process-description">
+                  {item.text}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
