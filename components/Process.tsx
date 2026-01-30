@@ -6,17 +6,45 @@ import { useRef } from "react";
 import { processItems } from "@/data/data"
 
 export default function Process() {
-  return (
-    <section className="section">
-      {/* Title */}
-      <div className="container">
-        <h2 className="section-title">
-          thoughtfull
-        </h2>
 
-        <div className="flex items-center gap-5">
-          <h2 className="section-title">process</h2>
-          <p className="uppercase font-medium">i think a lot about the process</p>
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(() => {
+    const textSplit = SplitText.create(".text", {
+      type: "words,lines",
+      linesClass: "overflow-hidden"
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".process-wrapper",
+        start: "top center"
+      }
+    });
+
+    tl.from(textSplit.words, {
+      yPercent: 100,
+      ease: "power2.inOut",
+      duration: 1,
+      stagger: 0.03,
+    })
+  },
+    {
+      scope: containerRef
+    })
+
+  return (
+    <section className="section" ref={containerRef}>
+      <div className="container">
+        <div className="process-wrapper">
+          <h2 className="section-title text">
+            thoughtfull
+          </h2>
+
+          <div className="flex items-center gap-5">
+            <h2 className="section-title text">process</h2>
+            <p className="uppercase font-medium text">i think a lot about the process</p>
+          </div>
         </div>
       </div>
 
