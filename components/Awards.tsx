@@ -28,6 +28,31 @@ export default function Awards() {
       duration: 1,
       stagger: 0.03,
     })
+
+    // Staggered entrance for award containers
+    tl.from(".award-column", {
+      y: 60,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+    }, "-=0.8")
+
+    // Fluid floating animation for images
+    gsap.to(".award-item", {
+      y: "random(-15, 15)",
+      x: "random(-5, 5)",
+      rotation: "random(-2, 2)",
+      duration: "random(1.5, 2.5)",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        amount: 1,
+        from: "random"
+      }
+    });
+
   },
     {
       scope: containerRef
@@ -45,14 +70,19 @@ export default function Awards() {
         {/* Wrapper */}
         <div className="flex items-center gap-7 overflow-hidden mt-16 py-16 justify-center">
           {awards.map((award) => (
-            <div key={award.id} className="shrink-0 odd:-mt-8 lg:odd:-mt-18">
-              <Image
-                src={award.img}
-                alt={award.id.toString()}
-                width={150}
-                height={150}
-                className="w-full h-full object-cover"
-              />
+            <div
+              key={award.id}
+              className="shrink-0 odd:-mt-8 lg:odd:-mt-18 award-column"
+            >
+              <div className="award-item transition-transform duration-500 hover:scale-110 cursor-pointer">
+                <Image
+                  src={award.img}
+                  alt={award.id.toString()}
+                  width={150}
+                  height={150}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           ))}
         </div>
