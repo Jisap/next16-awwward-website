@@ -144,6 +144,42 @@ export const testimonialsItems = [
     img: "/images/testimonials-img.jpg",
     desc: "Working with Kai was a smooth and reliable experience from start to finish. He delivered high-quality work efficiently and exceeded our expectations. We would be happy to collaborate with him again in the future.",
   },
+  {
+    id: 2,
+    name: "Lucas Hartman",
+    role: "Creative Technologist",
+    company: "Yahoo!",
+    project: "British Airways",
+    img: "/images/testimonials-img.jpg",
+    desc: "Working with Kai was a smooth and reliable experience from start to finish. He delivered high-quality work efficiently and exceeded our expectations. We would be happy to collaborate with him again in the future.",
+  },
+  {
+    id: 3,
+    name: "Lucas Hartman",
+    role: "Creative Technologist",
+    company: "Yahoo!",
+    project: "British Airways",
+    img: "/images/testimonials-img.jpg",
+    desc: "Working with Kai was a smooth and reliable experience from start to finish. He delivered high-quality work efficiently and exceeded our expectations. We would be happy to collaborate with him again in the future.",
+  },
+  {
+    id: 4,
+    name: "Lucas Hartman",
+    role: "Creative Technologist",
+    company: "Yahoo!",
+    project: "British Airways",
+    img: "/images/testimonials-img.jpg",
+    desc: "Working with Kai was a smooth and reliable experience from start to finish. He delivered high-quality work efficiently and exceeded our expectations. We would be happy to collaborate with him again in the future.",
+  },
+  {
+    id: 5,
+    name: "Lucas Hartman",
+    role: "Creative Technologist",
+    company: "Yahoo!",
+    project: "British Airways",
+    img: "/images/testimonials-img.jpg",
+    desc: "Working with Kai was a smooth and reliable experience from start to finish. He delivered high-quality work efficiently and exceeded our expectations. We would be happy to collaborate with him again in the future.",
+  },
 ];
 
 export const companyLogos = [

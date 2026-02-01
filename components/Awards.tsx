@@ -40,16 +40,14 @@ export default function Awards() {
 
     // Fluid floating animation for images
     gsap.to(".award-item", {
-      y: "random(-15, 15)",
-      x: "random(-5, 5)",
-      rotation: "random(-2, 2)",
-      duration: "random(1.5, 2.5)",
+      y: (index) => index % 2 === 0 ? 15 : -15,
+      duration: 2,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
       stagger: {
         amount: 1,
-        from: "random"
+        from: "start"
       }
     });
 

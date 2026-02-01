@@ -98,15 +98,15 @@ export default function Testimonials() {
               </div>
 
 
-              <div>
+              <div className="flex justify-between items-center">
                 <button>
-                  <ArrowBigLeft />
+                  <ArrowBigLeft size={40} className="text-neutral-900 hover:fill-neutral-900 transition-colors" />
                 </button>
 
                 <span>01/05</span>
 
                 <button>
-                  <ArrowBigRight />
+                  <ArrowBigRight size={40} className="text-neutral-900 hover:fill-neutral-900 transition-colors" />
                 </button>
               </div>
             </div>
