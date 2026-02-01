@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function WorkWith() {
-  return <div>WorkWith</div>;
+  return <div className="h-screen">WorkWith</div>;
 }
