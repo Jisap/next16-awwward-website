@@ -1,12 +1,14 @@
 "use client"
 
 import { gsap, useGSAP, SplitText, ScrollTrigger } from "@/lib/gsap-util"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useRef } from "react";
 import { testimonialsItems } from "@/data/data";
 import Image from "next/image";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 
 
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function Testimonials() {
 
@@ -57,20 +59,6 @@ export default function Testimonials() {
     {
       scope: containerRef
     })
-
-  const scrollToTestimonial = (index: number) => {
-    const cards = gsap.utils.toArray<HTMLElement>(".testimonial-card");
-    if (cards[index]) {
-      gsap.to(window, {
-        scrollTo: {
-          y: cards[index],
-          offsetY: window.innerWidth < 768 ? 0 : window.innerHeight * 0.1,
-        },
-        duration: 1,
-        ease: "power2.inOut",
-      });
-    }
-  };
 
   return (
     <section className="section overflow-visible" ref={containerRef}>
@@ -137,26 +125,9 @@ export default function Testimonials() {
               </div>
 
               {/* Counter and Navigation */}
-              <div className="flex justify-between items-center p-6 border-t border-neutral-100 bg-neutral-50/50">
+              <div className="flex justify-end items-center p-6 border-t border-neutral-100 bg-neutral-50/50">
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-medium">0{index + 1} / 0{testimonialsItems.length}</span>
-                </div>
-
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => scrollToTestimonial(index - 1)}
-                    disabled={index === 0}
-                    className="p-2 hover:bg-neutral-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                  >
-                    <ArrowBigLeft size={32} className="text-neutral-900" />
-                  </button>
-                  <button
-                    onClick={() => scrollToTestimonial(index + 1)}
-                    disabled={index === testimonialsItems.length - 1}
-                    className="p-2 hover:bg-neutral-200 rounded-full transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                  >
-                    <ArrowBigRight size={32} className="text-neutral-900" />
-                  </button>
                 </div>
               </div>
             </div>
