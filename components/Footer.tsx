@@ -29,34 +29,35 @@ export default function Footer() {
   }, []);
 
   useGSAP(() => {
-    // Parallax Reveal of elements
-    gsap.from(".footer-content", {
-      y: 100,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
+    // Animación de revelación 
+    // para el contenido del footer
+    gsap.from(".footer-content", {         // Selecciona los elementos con la clase 'footer-content'
+      y: 100,                              // Comienza 100px hacia abajo de su posición final
+      opacity: 0,                          // Comienza totalmente transparente
+      duration: 1.5,                       // La animación dura 1.5 segundos
+      ease: "power4.out",                  // Curva de aceleración para un efecto suave
       scrollTrigger: {
-        trigger: container.current,
-        start: "top 90%",
+        trigger: container.current,        // El disparador es el contenedor del footer
+        start: "top 90%",                  // La animación empieza cuando el 90% del footer es visible
       }
     });
 
-    // Background text movement (subtle scale instead of horizontal shift)
+    // Animación del texto de fondo "KANENOVAK"
     gsap.fromTo(".bg-outlined-text",
-      { scale: 0.9, opacity: 0 },
+      { scale: 0.9, opacity: 0 },          // Estado inicial: escalado al 90% y transparente
       {
-        scale: 1,
-        opacity: 0.2,
+        scale: 1,                          // Estado final: escala normal
+        opacity: 0.2,                      // Estado final: opacidad sutil para que quede de fondo
         scrollTrigger: {
-          trigger: container.current,
-          start: "top bottom",
-          end: "top 20%",
-          scrub: 1,
+          trigger: container.current,      // El disparador es el contenedor del footer
+          start: "top bottom",             // Empieza cuando la parte superior del footer toca la parte inferior de la pantalla
+          end: "top 20%",                  // Termina cuando la parte superior del footer está al 20% de la pantalla
+          scrub: 1,                        // Vincula la animación directamente al progreso del scroll
         }
       }
     );
 
-    // Let's Chat animation
+    // Animación para el título "Let's chat"
     if (titleRef.current) {
       const text = titleRef.current.innerText;
       titleRef.current.innerHTML = text.split("").map(char =>
@@ -64,29 +65,29 @@ export default function Footer() {
       ).join("");
 
       gsap.from(".char", {
-        y: 100,
-        opacity: 0,
-        stagger: 0.02,
-        duration: 1,
-        ease: "power4.out",
+        y: 100,                           // Cada letra empieza 100px hacia abajo
+        opacity: 0,                       // Y totalmente transparente
+        stagger: 0.02,                    // Cada letra anima 0.02s después de la anterior, creando un efecto escalonado
+        duration: 1,                      // Duración de la animación de cada letra
+        ease: "power4.out",               // Curva de aceleración
         scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 90%",
+          trigger: titleRef.current,      // El disparador es el propio título
+          start: "top 90%",               // Empieza cuando el título es visible en un 90%
         }
       });
     }
 
-    // Magnetic effect for links
+    // Efecto magnético para los enlaces
     const magneticElements = gsap.utils.toArray<HTMLElement>(".magnetic", container.current);
     magneticElements.forEach((el) => {
       const onMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
         const { left, top, width, height } = el.getBoundingClientRect();
-        const x = clientX - (left + width / 2);
+        const x = clientX - (left + width / 2); // Calcula la posición del cursor relativa al centro del elemento
         const y = clientY - (top + height / 2);
         gsap.to(el, {
-          x: x * 0.4,
-          y: y * 0.4,
+          x: x * 0.4, // Mueve el elemento en el eje X hacia el cursor
+          y: y * 0.4, // Mueve el elemento en el eje Y hacia el cursor
           duration: 0.3,
           ease: "power2.out",
         });
@@ -94,9 +95,9 @@ export default function Footer() {
       const onMouseLeave = () => {
         gsap.to(el, {
           x: 0,
-          y: 0,
+          y: 0, // Devuelve el elemento a su posición original
           duration: 0.5,
-          ease: "elastic.out(1, 0.3)",
+          ease: "elastic.out(1, 0.3)", // Usa una curva elástica para un efecto de "rebote"
         });
       };
 
