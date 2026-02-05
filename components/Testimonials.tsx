@@ -20,7 +20,7 @@ export default function Testimonials() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".about-wrapper",
-        start: "top center"
+        start: "top top"
       }
     });
 
