@@ -1,6 +1,6 @@
 "use client"
 
-import { gsap, useGSAP, SplitText } from "@/lib/gsap-util"
+import { gsap, useGSAP, SplitText, ScrollTrigger } from "@/lib/gsap-util"
 import { useRef } from "react";
 import { testimonialsItems } from "@/data/data";
 import Image from "next/image";
@@ -12,50 +12,65 @@ export default function Testimonials() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    const textSplit = SplitText.create(".text", {
-      type: "words,lines",
-      linesClass: "overflow-hidden"
-    });
+    // Refresh ScrollTrigger when everything is loaded to avoid calculation errors
+    const refreshScrollers = () => {
+      ScrollTrigger.refresh();
+    };
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about-wrapper",
-        start: "top center"
-      }
-    });
+    window.addEventListener("load", refreshScrollers);
 
-    tl.from(textSplit.words, {
-      yPercent: 100,
-      ease: "power2.inOut",
-      duration: 1,
-      stagger: 0.03,
+    // Animación del título
+    const titles = gsap.utils.toArray(".section-title");
+    titles.forEach((title: any) => {
+      const textSplit = new SplitText(title, {
+        type: "words,lines",
+        linesClass: "overflow-hidden"
+      });
+
+      gsap.from(textSplit.words, {
+        yPercent: 100,
+        ease: "power2.inOut",
+        duration: 1,
+        stagger: 0.03,
+        scrollTrigger: {
+          trigger: title,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        }
+      });
     });
 
     // Array de todas las tarjetas de testimonios
     const cards = gsap.utils.toArray<HTMLElement>(".testimonial-card");
 
     cards.forEach((card, i) => {
-      // Solo animamos si NO es la última tarjeta
       if (i < cards.length - 1) {
         gsap.to(card, {
-          scale: 0.95,                 // Reducción más sutil
-          opacity: 0.2,                // Mantiene algo de visibilidad en el stack
+          scale: 0.95,
+          opacity: 0.2,
           duration: 1,
           ease: "none",
           scrollTrigger: {
             trigger: cards[i + 1],
-            start: "top 60%",          // Empieza más tarde (cuando la siguiente está más cerca del centro)
-            end: "top 20%",            // Termina antes de que la siguiente cubra todo
+            start: "top 60%",
+            end: "top 20%",
             scrub: true,
+            invalidateOnRefresh: true,
           }
         });
       }
     });
 
-  },
-    {
-      scope: containerRef
-    })
+    // For producción: doble refresh con retardos para asegurar que el DOM y fuentes estén listos
+    const timer1 = setTimeout(refreshScrollers, 100);
+    const timer2 = setTimeout(refreshScrollers, 1500);
+
+    return () => {
+      window.removeEventListener("load", refreshScrollers);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, { scope: containerRef });
 
   return (
     <section className="section overflow-visible" ref={containerRef}>
