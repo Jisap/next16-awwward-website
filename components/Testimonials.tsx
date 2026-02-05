@@ -20,7 +20,7 @@ export default function Testimonials() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".about-wrapper",
-        start: "top top"
+        start: "top center"
       }
     });
 
@@ -38,15 +38,15 @@ export default function Testimonials() {
       // Solo animamos si NO es la última tarjeta
       if (i < cards.length - 1) {
         gsap.to(card, {
-          scale: 0.9,                  // La tarjeta actual se reduce al 90%
-          opacity: 0,                  // La tarjeta actual se vuelve invisible
-          duration: 1,                 // Duración de la animación
-          ease: "none",                // Tipo de easing
-          scrollTrigger: {             // Configuración del Disparador de la animación
-            trigger: cards[i + 1],     // El trigger es la siguiente tarjeta
-            start: "top 80%",          // Empieza cuando la SIGUIENTE tarjeta está al 80% de la altura (entrando por abajo)
-            end: "top 10%",            // Termina cuando la SIGUIENTE tarjeta llega al 10% de la altura (cerca de arriba)
-            scrub: true,               // Vincula la animación al scroll (true = sincronización suave)
+          scale: 0.95,                 // Reducción más sutil
+          opacity: 0.2,                // Mantiene algo de visibilidad en el stack
+          duration: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: cards[i + 1],
+            start: "top 60%",          // Empieza más tarde (cuando la siguiente está más cerca del centro)
+            end: "top 20%",            // Termina antes de que la siguiente cubra todo
+            scrub: true,
           }
         });
       }
