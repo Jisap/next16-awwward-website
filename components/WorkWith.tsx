@@ -48,7 +48,7 @@ export default function WorkWith() {
   return (
     <section
       ref={containerRef}
-      className="py-20 mb-[70vh] overflow-hidden"
+      className="py-20 mb-0 md:mb-[70vh] overflow-hidden"
     >
       <div className="container">
         <p
