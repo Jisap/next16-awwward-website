@@ -1,14 +1,11 @@
 "use client"
 
-import { gsap, useGSAP, SplitText, ScrollTrigger } from "@/lib/gsap-util"
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { gsap, useGSAP, SplitText } from "@/lib/gsap-util"
 import { useRef } from "react";
 import { testimonialsItems } from "@/data/data";
 import Image from "next/image";
-import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 export default function Testimonials() {
 
